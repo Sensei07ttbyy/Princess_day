@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Royal Treasury</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a0b16;
+            color: #fdf5f6;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 50% 50%, #2a1122 0%, #1a0b16 100%);
+        }
+
+        header {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #e8b4b8;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #d8c3cb;
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .letter-container {
+            background: rgba(253, 245, 246, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(232, 180, 184, 0.3);
+            border-radius: 15px;
+            padding: 50px 40px;
+            max-width: 650px;
+            width: 85%;
+            margin: 0 auto 40px;
+            box-shadow: 0 0 30px rgba(232, 180, 184, 0.1);
+            position: relative;
+        }
+
+        .letter-container::before, .letter-container::after {
+            content: '✨';
+            position: absolute;
+            font-size: 1.5rem;
+            color: #e8b4b8;
+        }
+        .letter-container::before { top: 15px; left: 15px; }
+        .letter-container::after { bottom: 15px; right: 15px; }
+
+        .salutation {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #e8b4b8;
+            margin-bottom: 25px;
+        }
+
+        .letter-body {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #e2d1d8;
+            font-weight: 300;
+        }
+
+        .letter-body p {
+            margin-bottom: 20px;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #e8b4b8;
+            text-align: right;
+            margin-top: 40px;
+        }
+
+        .next-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            color: #1a0b16;
+            background-color: #e8b4b8;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 50px;
+        }
+
+        .next-btn:hover {
+            background-color: #fdf5f6;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(232, 180, 184, 0.4);
+        }
+
+        @media (max-width: 600px) {
+            .letter-container { padding: 40px 20px; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>The Royal Treasury</h1>
+        <p class="subtitle">Words written just for you.</p>
+    </header>
+
+    <div class="letter-container">
+        <div class="salutation">To my dearest Anshika,</div>
+        
+        <div class="letter-body">
+            <p>If I could write a thousand lyrics, none of them would truly capture how much you mean to me. You are the melody that makes my life make sense.</p>
+            
+            <p>Before you, things were just ordinary. Now, every day with my jaanu feels like a beautiful dream I never want to wake up from. Whether we are taking photos, exploring new places, or simply sitting in silence, you make my world so much brighter.</p>
+            
+            <p>I built this little kingdom today to remind you that you are my queen, my inspiration, and my greatest adventure. Thank you for choosing me.</p>
+        </div>
+
+        <div class="signature">Forever yours,<br>Pratik</div>
+    </div>
+
+    <a href="melodies.html" class="next-btn">Listen to Your Melodies 🎵</a>
+
+</body>
+</html>

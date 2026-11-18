@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery of Her Highness</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a0b16; 
+            color: #fdf5f6;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #e8b4b8;
+            margin-bottom: 10px;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 600px;
+            width: 90%;
+            margin: 30px auto;
+            background: linear-gradient(145deg, #2a1122 0%, #1a0b16 100%);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            border: 1px solid #4a253f;
+            text-align: center;
+        }
+
+        .slide-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #e8b4b8;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .caption {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: #d8c3cb;
+            font-weight: 300;
+            min-height: 60px;
+            font-style: italic;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .nav-btn {
+            background-color: transparent;
+            color: #e8b4b8;
+            border: 1px solid #e8b4b8;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #e8b4b8;
+            color: #1a0b16;
+        }
+
+        .next-page-container {
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+
+        .next-btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            color: #1a0b16;
+            background-color: #e8b4b8;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .next-btn:hover {
+            background-color: #fdf5f6;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(232, 180, 184, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>The Gallery of Her Highness</h1>
+        <p>A few of my favorite moments with you, Jaanu 🫶</p>
+    </header>
+
+    <div class="slideshow-container">
+        <img id="currentImage" class="slide-image" src="photo1.jpg" alt="Anshika Memory">
+        <div id="currentCaption" class="caption">That gentle, beautiful look that always melts my heart... you are my forever, Jaanu. 💕</div>
+        
+        <div class="controls">
+            <button class="nav-btn" onclick="changeSlide(-1)">&#8592; Previous</button>
+            <button class="nav-btn" onclick="changeSlide(1)">Next &#8594;</button>
+        </div>
+    </div>
+
+    <div class="next-page-container">
+        <a href="treasury.html" class="next-btn">Open The Royal Treasury ✨</a>
+    </div>
+
+    <script>
+        const slides = [
+            { image: 'photo1.jpg', caption: 'That gentle, beautiful look that always melts my heart... you are my forever, Jaanu. 💕' },
+            { image: 'photo2.jpg', caption: 'Goofy, playful, and completely irreplaceable. You\'re my favorite human. 😝🫶' },
+            { image: 'photo3.jpg', caption: 'You look like actual royalty here. Absolutely stunning. 👑✨' },
+            { image: 'photo4.jpg', caption: 'Exploring the hills is beautiful, but being by your side is the real adventure. 🏔️' },
+            { image: 'photo5.jpg', caption: 'Double the beauty, glowing brighter than all the festive lights. ✨' }
+        ];
+
+        let currentIndex = 0;
+        const imgElement = document.getElementById('currentImage');
+        const captionElement = document.getElementById('currentCaption');
+
+        function changeSlide(direction) {
+            currentIndex += direction;
+            
+            if (currentIndex >= slides.length) {
+                currentIndex = 0;
+            } else if (currentIndex < 0) {
+                currentIndex = slides.length - 1;
+            }
+            
+            imgElement.style.opacity = 0;
+            setTimeout(() => {
+                imgElement.src = slides[currentIndex].image;
+                captionElement.innerText = slides[currentIndex].caption;
+                imgElement.style.opacity = 1;
+            }, 300);
+        }
+    </script>
+</body>
+</html>

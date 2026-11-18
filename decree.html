@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Royal Decree</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a0b16;
+            color: #fdf5f6;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden;
+            background-image: radial-gradient(circle at 50% 50%, #2a1122 0%, #1a0b16 100%);
+        }
+
+        .decree-container {
+            background: rgba(253, 245, 246, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(232, 180, 184, 0.3);
+            border-radius: 20px;
+            padding: 50px 30px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #e8b4b8;
+            margin-bottom: 20px;
+        }
+
+        p#question-text {
+            font-size: 1.2rem;
+            color: #d8c3cb;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .btn-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            min-height: 60px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            border: none;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-yes {
+            background-color: #e8b4b8;
+            color: #1a0b16;
+            box-shadow: 0 10px 20px rgba(232, 180, 184, 0.3);
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.05);
+            background-color: #fdf5f6;
+        }
+
+        .btn-no {
+            background-color: #4a253f;
+            color: #fdf5f6;
+            border: 1px solid #7a3a5f;
+            position: absolute;
+        }
+
+        #success-message {
+            display: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #e8b4b8;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .heart {
+            position: fixed;
+            top: -10vh;
+            font-size: 1.5rem;
+            animation: fall linear forwards;
+            z-index: 5;
+            user-select: none;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="decree-container" id="main-container">
+        <h1>The Royal Decree 👑</h1>
+        <p id="question-text">Anshika, my Jaanu...<br>Will you do me the honor of being my official Princess for a special date?</p>
+        
+        <div id="success-message">
+            I knew you'd say yes! 😉<br>Get ready for a beautiful time, my Princess. 💕
+        </div>
+
+        <div class="btn-container" id="buttons">
+            <button class="btn btn-no" id="noBtn" style="margin-left: 150px;">No 🙅‍♀️</button>
+            <button class="btn btn-yes" id="yesBtn" style="margin-right: 150px;">Yes, I will! 💖</button>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const questionText = document.getElementById('question-text');
+        const successMessage = document.getElementById('success-message');
+        const buttonsContainer = document.getElementById('buttons');
+
+        function moveNoButton() {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+
+            const randomX = Math.max(0, Math.floor(Math.random() * (windowWidth - btnWidth)));
+            const randomY = Math.max(0, Math.floor(Math.random() * (windowHeight - btnHeight)));
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+            noBtn.style.margin = '0';
+        }
+
+        noBtn.addEventListener('mouseover', moveNoButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveNoButton();
+        });
+
+        yesBtn.addEventListener('click', () => {
+            buttonsContainer.style.display = 'none';
+            questionText.style.display = 'none';
+            document.querySelector('h1').style.display = 'none';
+            
+            successMessage.style.display = 'block';
+
+            createHearts();
+        });
+
+        function createHearts() {
+            const heartsInterval = setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                
+                const emojis = ['💖', '✨', '💕', '👑', '🫶'];
+                heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+                
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }, 150);
+
+            setTimeout(() => {
+                clearInterval(heartsInterval);
+            }, 6000);
+        }
+    </script>
+</body>
+</html>
